@@ -47,6 +47,13 @@ function print_note {
     echo -e "\e[36mNOTE: ${@}\e[0m"
 }
 
+#sudo /lib/systemd/systemd-udevd --daemon
+#udevadm trigger
+
+sudo /lib/systemd/systemd-udevd --daemon || true
+sudo udevadm trigger || true
+sleep 1
+
 # Execute all container init scripts
 for init_script in /etc/cont-init.d/*.sh ; do
     echo
